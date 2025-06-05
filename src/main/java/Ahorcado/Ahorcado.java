@@ -17,9 +17,14 @@ public class Ahorcado {
         }
         return sb.toString(); // Devuelve la cadena completa con guiones ("____")
     }
-    // Mostrar la palabra
-    public void mostrarPalabra() {
+    // Muestra el progreso actual del jugador
+    public void mostrarProgreso() {
+        System.out.println("Progreso: " + progreso); // Imprime los guiones
+    }
+
+    public void mostrarPalabra() { // Mostrar la palabra secreta
         System.out.println("Palabra secreta: " + palabraSecreta);
     }
+
 
 }
