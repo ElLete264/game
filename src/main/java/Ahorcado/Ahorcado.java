@@ -60,4 +60,15 @@ public class Ahorcado {
             }
         }
     }
+    //Añadí getters (getProgreso(), getPalabraSecreta()) para poder comprobar
+    // desde los tests el estado interno del juego, porque antes solo
+    // mostrabas con System.out.println y eso no se puede.
+    public String getProgreso() {
+        return progreso;
+    }
+
+    public String getPalabraSecreta() {
+        return palabraSecreta;
+    }
+
 }
