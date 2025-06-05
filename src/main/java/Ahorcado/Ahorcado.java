@@ -1,4 +1,5 @@
 package Ahorcado;
+import java.util.Scanner;
 
 public class Ahorcado {
     private String palabraSecreta; // La palabra que hay que adivinar
@@ -39,6 +40,24 @@ public class Ahorcado {
             }
         }
         progreso = nuevoProgreso.toString(); // Actualiza el progreso con los cambios
+    }
 
+    public void jugar() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("¡Bienvenido al juego del Ahorcado!");
+
+        while (true) {
+            mostrarProgreso();
+            System.out.print("Adivina una letra: ");
+            char letra = scanner.next().toLowerCase().charAt(0);
+
+            adivinarLetra(letra);
+
+            if (!progreso.contains("_")) {
+                System.out.println("¡Felicidades! Has adivinado la palabra:");
+                mostrarProgreso();
+                break;
+            }
+        }
     }
 }
