@@ -30,10 +30,12 @@ class AhorcadoTest {
     void testAdivinarLetraVariasVeces() {
         Ahorcado juego = new Ahorcado("ordenador");
         juego.adivinarLetra('r');
-        assertEquals("_______r_", juego.getProgreso());
+        assertEquals("_r______r", juego.getProgreso());
         juego.adivinarLetra('d');
-        assertEquals("___d__dr_", juego.getProgreso());
+        assertEquals("_rd___d_r", juego.getProgreso());
     }
+
+
 
     @Test
     void testMostrarPalabra() {
