@@ -17,4 +17,5 @@ WORKDIR /app
 # Copiamos el JAR generado desde la etapa de build
 COPY --from=build /app/target/Ahorcado-1.0-SNAPSHOT.jar /app/ahorcado-lib.jar
 
-# Como es una librería, no tiene CMD ni ENTRYPOINT
+# Ejecutamos el juego al iniciar el contenedor
+CMD ["java", "-jar", "/app/ahorcado-lib.jar"]
