@@ -16,8 +16,8 @@ jobs:
       - name: Login en Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}   # carlospereezzz
-          password: ${{ secrets.DOCKER_TOKEN }}      # dckr_pat_vsb-xwOvUsZb43eD-wkEp99EVb4
+          username: ${{ secrets.DOCKER_USERNAME }}   # Aquí usas el secreto que creaste con tu usuario Docker Hub
+          password: ${{ secrets.DOCKER_TOKEN }}      # Aquí usas el token que guardaste como secreto
 
       - name: Construir la imagen Docker
         run: docker build -t carlospereezzz/ahorcado-image:latest .
