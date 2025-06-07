@@ -1,21 +1,26 @@
-# Etapa 1: Construcción del proyecto con Maven
-FROM maven:3.9.6-eclipse-temurin-17 AS build
+name: Publicar imagen Docker
 
-WORKDIR /app
+on:
+  push:
+    branches:
+      - master   # Se ejecuta al hacer push en la rama master
 
-# Copiamos el proyecto Maven al contenedor
-COPY . .
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
 
-# Compilamos el proyecto, lo que genera el .jar
-RUN mvn clean install
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
 
-# Etapa 2: Imagen final ligera solo con el .jar generado
-FROM eclipse-temurin:17-jdk-alpine
+      - name: Login en Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}   # mi usuario
+          password: ${{ secrets.DOCKERHUB_TOKEN }}      # mi contraseña rara
 
-WORKDIR /app
+      - name: Construir la imagen Docker
+        run: docker build -t carlospereezzz/ahorcado-image:latest .
 
-# Copiamos el JAR generado desde la etapa de build
-COPY --from=build /app/target/Ahorcado-1.0-SNAPSHOT.jar /app/ahorcado-lib.jar
-
-# Ejecutamos el juego al iniciar el contenedor
-CMD ["java", "-jar", "/app/ahorcado-lib.jar"]
+      - name: Subir imagen a Docker Hub
+        run: docker push carlospereezzz/ahorcado-image:latest
